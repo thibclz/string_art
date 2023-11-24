@@ -13,8 +13,8 @@ if __name__ == "__main__":
     img_final_border_flatten = img_final_with_border.ravel()/255
     A = generate_combination_matrix(number_of_nails, pixels_by_length)
     reg = LinearRegression().fit(A.T, img_final_border_flatten)
-    result = reg.predict(A.T).reshape(img_final_with_border.shape)
+    result = np.dot(A.T, reg.coef_).reshape((pixels_by_length + 2, pixels_by_length + 2))
     result = np.round((result - np.min(result))/(np.max(result) - np.min(result)) * 255)
-    plt.imshow(result, cmap='gray', vmin=0, vmax=255)
+    plt.imshow(255 - result, cmap='gray', vmin=0, vmax=255)
     plt.show()
     

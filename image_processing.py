@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 
 def convert_image_in_grayscale(image):
-    return cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    return 255 - cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
 
 def resize_image(image, pixels_per_line):
